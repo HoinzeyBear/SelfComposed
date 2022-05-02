@@ -16,26 +16,99 @@ import androidx.compose.ui.unit.dp
 import com.example.selfcomposed.ui.theme.OrangeHighlight
 import com.example.selfcomposed.ui.theme.PurplyBlueContrast
 
+/*
+    https://dev.to/zachklipp/scoped-recomposition-jetpack-compose-what-happens-when-state-changes-l78
+ */
 
 @Composable
 fun Stateful() {
     Surface(modifier = Modifier.fillMaxSize()) {
+        println("Drawing surface")
+        val oddNumber: MutableState<Int> = remember { mutableStateOf(1) }
+        var evenNumber by remember{ mutableStateOf(2) }
 
         Row(modifier = Modifier.background(color = MaterialTheme.colors.surface), horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically) {
-
-            var oddNumber = 1
-            OddButton(oddNumber = oddNumber) {
-                oddNumber += 1
-            }
-
-            var evenNumber = 2
+//            println("Drawing row")
+//
+//            OddButton(oddNumber
+//
+//
+//
+//            {
+//                oddNumber.
             EvenButton(evenNumber = evenNumber) {
                 evenNumber += 2
             }
         }
     }
 }
+
+@Composable
+fun StartingPoint() {
+    /*
+    On first render, all 4 "Drawing" messages are printed. Surface -> Row -> OddButton -> EvenButton
+
+    Your intuition may be that when the OddButton is pressed, only the OddButton is recomposed but this isn't
+    the case. You get: Surface -> Row -> OddButton all getting recomposed. Why though? This seems a bit much
+
+    Answer lies in recompose scopes. The entirety of the nearest scope to those changes will be recomposed.
+    Q: So Shouldn't that just be Row? Or even just the Button ?
+    A: Common layouts such as Column, Row & Box are _inline_ functions. As inline functions are basically copied
+    to the calling site on compile, they don't have their own scope. So our Surface is the nearest compose scope.
+     */
+    Surface(modifier = Modifier.fillMaxSize()) {
+        println("Drawing surface")
+
+        Row(modifier = Modifier.background(color = MaterialTheme.colors.surface), horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically) {
+            println("Drawing row")
+
+            val oddNumber: MutableState<Int> = remember { mutableStateOf(1) }
+            OddButton(oddNumber = oddNumber.value) {
+                oddNumber.value += 2
+            }
+
+            var evenNumber by remember{ mutableStateOf(2) }
+            EvenButton(evenNumber = evenNumber) {
+                evenNumber += 2
+            }
+        }
+    }
+}
+
+@Composable
+fun StartingPoint_ExtraSurface() {
+    /*
+        Here the "second surface" is the nearest scope, so it prevents the Row & First surface being recomposed.
+        It does bork the layout however and in this scenario, would offer no benefit.
+     */
+    Surface(modifier = Modifier.fillMaxSize()) {
+        println("Drawing surface")
+
+        Row(modifier = Modifier.background(color = MaterialTheme.colors.surface), horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically) {
+            println("Drawing row")
+            Surface(){
+                println("Drawing second surface")
+                val oddNumber: MutableState<Int> = remember { mutableStateOf(1) }
+                OddButton(oddNumber = oddNumber.value) {
+                    oddNumber.value += 2
+                }
+
+                var evenNumber by remember{ mutableStateOf(2) }
+                EvenButton(evenNumber = evenNumber) {
+                    evenNumber += 2
+                }
+            }
+        }
+    }
+}
+
+/*
+    //todo make a class that is the state & maybe a viewmodel and observe if a field being updated
+    modifies all the things observing that object or only that field on the object
+ */
 
 @Composable
 fun OddButton(oddNumber: Int, increaseOdd: () -> Unit) {
