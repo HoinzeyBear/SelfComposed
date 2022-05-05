@@ -105,10 +105,61 @@ fun StartingPoint_ExtraSurface() {
     }
 }
 
-/*
-    //todo make a class that is the state & maybe a viewmodel and observe if a field being updated
-    modifies all the things observing that object or only that field on the object
- */
+data class TwoButtonsState(var oddNumber: Int, var evenNumber: Int)
+
+@Composable
+fun StartingPoint_WithDataClassAsState() {
+    Surface(modifier = Modifier.fillMaxSize()) {
+        val state: MutableState<TwoButtonsState> = remember { mutableStateOf(TwoButtonsState(oddNumber = 1, evenNumber = 2)) }
+        println("Drawing surface")
+
+        Row(modifier = Modifier.background(color = MaterialTheme.colors.surface), horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically) {
+            println("Drawing row")
+
+            OddButton(oddNumber = state.value.oddNumber) {
+                state.value = state.value.copy(oddNumber = (state.value.oddNumber + 2))
+            }
+
+            EvenButton(evenNumber = state.value.evenNumber) {
+                state.value = state.value.copy(evenNumber = (state.value.evenNumber + 2))
+            }
+        }
+    }
+}
+
+class TwoButtonWithStateFields() {
+    val oddNumber = mutableStateOf(1)
+    val evenNumber = mutableStateOf(2)
+}
+
+@Composable
+fun StartingPoint_WithClassOfStateFields() {
+
+    val obj = TwoButtonWithStateFields()
+    Surface(modifier = Modifier.fillMaxSize()) {
+        /*
+        val obj = TwoButtonWithStateFields()
+        => If this is declared here, as the above surface is the nearest compose scope
+            the object is recreated each time, resulting in the values not changing on UI
+         */
+        println("Drawing surface")
+
+        Row(modifier = Modifier.background(color = MaterialTheme.colors.surface), horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically) {
+            println("Drawing row")
+
+            OddButton(oddNumber = obj.oddNumber.value) {
+                obj.oddNumber.value = obj.oddNumber.value + 2
+            }
+
+            EvenButton(evenNumber = obj.evenNumber.value) {
+                obj.evenNumber.value = obj.evenNumber.value + 2
+            }
+        }
+    }
+}
+
 
 @Composable
 fun OddButton(oddNumber: Int, increaseOdd: () -> Unit) {
