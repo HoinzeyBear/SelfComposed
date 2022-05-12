@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
 //                    Stateful()
 //                    StartingPoint()
 //                    StartingPoint_ExtraSurface()
-//                    StartingPoint_WithDataClassAsState()
-                    StartingPoint_WithClassOfStateFields()
+                    StartingPoint_WithDataClassAsState()
+//                    StartingPoint_WithClassOfStateFields()
                 }
             }
         }
