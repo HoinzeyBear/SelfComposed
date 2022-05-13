@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.selfcomposed.blog.AllAboutState
 import com.example.selfcomposed.ui.theme.SelfComposedTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,11 +20,8 @@ class MainActivity : ComponentActivity() {
             SelfComposedTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-//                    Stateful()
-//                    StartingPoint()
-//                    StartingPoint_ExtraSurface()
-                    StartingPoint_WithDataClassAsState()
-//                    StartingPoint_WithClassOfStateFields()
+                    println("Drawing root surface")
+                    AllAboutState()
                 }
             }
         }
