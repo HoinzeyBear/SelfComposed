@@ -303,6 +303,7 @@ fun EvenButton(modifier: Modifier = Modifier,evenNumber: Int, increaseEven: () -
 
 @Composable
 fun ListButton(modifier: Modifier = Modifier,list: List<String>, add: () -> Unit) {
+    println("Drawing List button")
     Button(modifier = modifier
         .padding(start = 5.dp)
         .background(PurplyBlueContrast),
