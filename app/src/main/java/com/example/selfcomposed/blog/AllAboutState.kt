@@ -239,14 +239,13 @@ fun MutableListDonts(modifier: Modifier = Modifier) {
 
 @Composable
 fun MutableListDos(modifier: Modifier = Modifier) {
+    println("Creating list")
     /*
         todo get a better understanding of why the firstList triggers a recomposition of all 3
         list buttons whereas the 2nd + 3rd manage to trigger an update without triggering any re-compose calls ?
      */
-    println("Creating list")
     var firstList by remember{mutableStateOf(listOf("a"))}
     val secondList: SnapshotStateList<String> = remember{ mutableStateListOf("a") }
-    //val firstList by remember{mutableStateOf(mutableListOf("a"))} - it doesn't like this
     val thirdList: MutableList<String> = remember{mutableStateListOf("a")}
 
     Row(modifier = modifier, horizontalArrangement = Arrangement.Center,
