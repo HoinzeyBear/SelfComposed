@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Self Composed</string>
+
+    <string name="imi_password_capital_letter_required">Capital letter required</string>
+    <string name="imi_number_required">Number required</string>
+    <string name="imi_8_characters_required">8 characters minimum</string>
+    <string name="imi_password_requirement_satisfied">%s, satisfied</string>
+    <string name="imi_password_requirement_needed">%s, needed</string>
 </resources>
