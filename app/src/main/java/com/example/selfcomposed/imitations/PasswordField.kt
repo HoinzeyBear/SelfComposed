@@ -129,7 +129,6 @@ fun RequirementEntry(
         BrightGreen
     } else
         MaterialTheme.colors.error
-//        MaterialTheme.colors.onSurface.copy(alpha = 0.4f)
 
     Row(
         modifier = modifier.padding(6.dp)
