@@ -5,13 +5,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalFocusManager
@@ -55,7 +53,7 @@ fun FormContent(modifier: Modifier) {
             modifier = Modifier.focusRequester(address1FocusRequester),
             value = "",
             label = "Address 1",
-            onNextClicked = {address2FocusRequester.requestFocus()})
+            onNextClicked = {focusManager.moveFocus(FocusDirection.Down)})
 
         FormTextField(
             modifier = Modifier.focusRequester(address2FocusRequester),
