@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.selfcomposed.blog.AllAboutState
 import com.example.selfcomposed.blog.KeyboardInputToNextFormField
 import com.example.selfcomposed.imitations.PasswordField
+import com.example.selfcomposed.imitations.Twitter
 import com.example.selfcomposed.ui.theme.SelfComposedTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +26,8 @@ class MainActivity : ComponentActivity() {
                     println("Drawing root surface")
 //                    AllAboutState()
 //                    PasswordField()
-                    KeyboardInputToNextFormField()
+//                    KeyboardInputToNextFormField()
+                    Twitter()
                 }
             }
         }
