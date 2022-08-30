@@ -51,17 +51,20 @@ fun MainContainer(modifier: Modifier) {
 
         var fabState by remember { mutableStateOf(MultiFabState.COLLAPSED) }
         Text(text = "Sample")
-        if(fabState == MultiFabState.EXPANDED) {
-            OpacityScreen(modifier = Modifier
-                .fillMaxSize()
-                .alpha(0.9F)
-                .background(color = Color.White))
+        if (fabState == MultiFabState.EXPANDED) {
+            OpacityScreen(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .alpha(0.9F)
+                    .background(color = Color.White)
+            )
         }
 
         ActionButton(
             modifier = Modifier.align(Alignment.BottomEnd),
             onStateChanged = { newState -> fabState = newState },
-            fabState = fabState)
+            fabState = fabState
+        )
     }
 }
 
@@ -77,7 +80,7 @@ fun ActionButton(
     fabState: MultiFabState
 ) {
 
-    Column(modifier ,horizontalAlignment = Alignment.End) {
+    Column(modifier, horizontalAlignment = Alignment.End) {
         val transition = updateTransition(targetState = fabState, label = "fab_transitions")
         val rotation: Float by transition.animateFloat(label = "fab_rotation") { s: MultiFabState ->
             if (s == MultiFabState.EXPANDED) 45f else 0f
@@ -113,15 +116,18 @@ fun ActionButton(
                 onStateChanged(
                     if (transition.currentState == MultiFabState.EXPANDED) {
                         MultiFabState.COLLAPSED
-                    } else MultiFabState.EXPANDED)
+                    } else MultiFabState.EXPANDED
+                )
             },
-            backgroundColor = TwitterBlue) {
+            backgroundColor = TwitterBlue
+        ) {
 
             Icon(
                 modifier = Modifier.size(40.dp),
                 imageVector = Icons.Default.Add,
                 contentDescription = null,
-                tint = Color.White)
+                tint = Color.White
+            )
         }
     }
 
@@ -161,9 +167,10 @@ private fun MiniFloatingActionButton(
 
                 Icon(
                     modifier = Modifier.size(25.dp),
-                    imageVector =item.image,
+                    imageVector = item.image,
                     contentDescription = null,
-                    tint = TwitterBlue)
+                    tint = TwitterBlue
+                )
             }
         }
 //        IconButton(
@@ -186,9 +193,11 @@ private fun MiniFloatingActionButton(
 @Composable
 fun PreviewFabStack() {
     Box(modifier = Modifier.fillMaxSize()) {
-        ActionButton(modifier = Modifier.align(Alignment.BottomEnd),
-            onStateChanged = {  },
-            fabState = MultiFabState.EXPANDED)
+        ActionButton(
+            modifier = Modifier.align(Alignment.BottomEnd),
+            onStateChanged = { },
+            fabState = MultiFabState.EXPANDED
+        )
     }
 }
 
@@ -200,9 +209,10 @@ enum class MultiFabState {
 enum class MultiFabItems(
     val identifier: String,
     val image: ImageVector,
-    val label: String) {
+    val label: String
+) {
 
-    SPACES("SPACES", Icons.Outlined.Info,"Spaces"),
+    SPACES("SPACES", Icons.Outlined.Info, "Spaces"),
     PHOTO("PHOTO", Icons.Outlined.Phone, "Photo"),
     GIF("GIF", Icons.Outlined.Build, "Gif")
 }
