@@ -6,20 +6,21 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -86,15 +87,15 @@ fun ActionButton(
         if (transition.currentState == MultiFabState.EXPANDED) {
             MiniFloatingActionButton(MultiFabItem("stuff",
 //                icon = bitmap!!,
-                label = "Stuff"), onFabItemClicked =  {}, buttonScale = scale, iconAlpha = alpha)
+                label = "Spaces"), onFabItemClicked =  {}, buttonScale = scale, iconAlpha = alpha)
             Spacer(modifier = Modifier.height(10.dp))
             MiniFloatingActionButton(MultiFabItem("stuff",
 //                icon = bitmap!!,
-                label = "Things"), onFabItemClicked =  {}, buttonScale = scale, iconAlpha = alpha)
+                label = "Photo"), onFabItemClicked =  {}, buttonScale = scale, iconAlpha = alpha)
             Spacer(modifier = Modifier.height(10.dp))
             MiniFloatingActionButton(MultiFabItem("stuff",
 //                icon = bitmap!!,
-                label = "Yokes"), onFabItemClicked =  {}, buttonScale = scale, iconAlpha = alpha)
+                label = "Gif"), onFabItemClicked =  {}, buttonScale = scale, iconAlpha = alpha)
             Spacer(modifier = Modifier.height(10.dp))
         }
 
@@ -134,17 +135,18 @@ private fun MiniFloatingActionButton(
             item.label,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.alpha(animateFloatAsState(iconAlpha).value)
+            modifier = Modifier
+                .alpha(animateFloatAsState(iconAlpha).value)
                 .background(color = MaterialTheme.colors.surface)
                 .padding(start = 6.dp, end = 6.dp, top = 4.dp)
         )
         Spacer(modifier = Modifier.width(16.dp))
-        Canvas(modifier = Modifier
-            .size(40.dp)
-            .clickable { onFabItemClicked(item) }, onDraw = {
-            drawCircle(color = Color.LightGray, buttonScale)
-//        drawImage(image = item.icon, topLeft = Offset(x = (this.center.x) - (item.icon.width/2), y = (this.center.y) - (item.icon.width/2)))
-        })
+        IconButton(
+            modifier = Modifier
+                .clip(CircleShape)
+                .background(color = Color.LightGray),
+            onClick = {  }) {
+        }
     }
 }
 
