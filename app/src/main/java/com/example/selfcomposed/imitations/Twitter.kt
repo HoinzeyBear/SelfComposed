@@ -10,23 +10,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Create
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.outlined.Build
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Phone
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,7 +43,6 @@ fun MainContainer(modifier: Modifier) {
     Box(modifier = modifier) {
 
         var fabState by remember { mutableStateOf(MultiFabState.COLLAPSED) }
-        Text(text = "Sample")
         if (fabState == MultiFabState.EXPANDED) {
             OpacityScreen(
                 modifier = Modifier
@@ -60,12 +52,19 @@ fun MainContainer(modifier: Modifier) {
             )
         }
 
+
+
         ActionButton(
             modifier = Modifier.align(Alignment.BottomEnd),
             onStateChanged = { newState -> fabState = newState },
             fabState = fabState
         )
     }
+}
+
+@Composable
+fun TweetList() {
+
 }
 
 @Composable
@@ -215,6 +214,22 @@ enum class MultiFabItems(
     SPACES("SPACES", Icons.Outlined.Info, "Spaces"),
     PHOTO("PHOTO", Icons.Outlined.Phone, "Photo"),
     GIF("GIF", Icons.Outlined.Build, "Gif")
+}
+
+private fun getListOfTweets(): List<TweetState> {
+    val list = mutableListOf<TweetState>()
+    val hoyneTweet1 = TweetState(twitterHandle = "@hoinzey", displayName = "Darren Hoyne", timeSinceTweet = "10h", content = "Hello world", 421, 18, 8)
+    val hoyneTweet2 = TweetState(twitterHandle = "@hoinzey", displayName = "Darren Hoyne", timeSinceTweet = "10h", content = "There was some *awful* refereeing decisions today in the Premier league.\n" +
+            "West Ham should have had a goal.\n" +
+            "Newcastle should have had a goal.\n" +
+            "Villa debatedly may have had a goal.", 1, 0, 2)
+    val hoyneTweet3 = TweetState(twitterHandle = "@hoinzey", displayName = "Darren Hoyne", timeSinceTweet = "10h", content = "I can understand the children but these fully grown men begging for selfies with the hurlers after the game would wither you", 10005, 189, 23230)
+
+    list.add(hoyneTweet1)
+    list.add(hoyneTweet2)
+    list.add(hoyneTweet3)
+
+    return list
 }
 
 

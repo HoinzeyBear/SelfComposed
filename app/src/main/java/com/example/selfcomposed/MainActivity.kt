@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.selfcomposed.blog.AllAboutState
 import com.example.selfcomposed.blog.KeyboardInputToNextFormField
 import com.example.selfcomposed.imitations.PasswordField
+import com.example.selfcomposed.imitations.Tweet
 import com.example.selfcomposed.imitations.Twitter
 import com.example.selfcomposed.ui.theme.SelfComposedTheme
 import com.example.selfcomposed.workshop.TopBarMenuWithSubMenu
@@ -24,12 +25,13 @@ class MainActivity : ComponentActivity() {
             SelfComposedTheme {
                 // A surface container using the 'background' color from the theme
 //                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    println("Drawing root surface")
+//                    println("Drawing root surface")
 //                    AllAboutState()
 //                    PasswordField()
 //                    KeyboardInputToNextFormField()
-//                    Twitter()
-                    TopBarMenuWithSubMenu()
+                    Twitter()
+//                    TopBarMenuWithSubMenu()
+//                      Tweet()
 //                }
             }
         }
