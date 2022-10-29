@@ -34,10 +34,12 @@ fun Tweet(tweetState: TweetState) {
 fun TweetContainer(
     tweetState: TweetState
 ) {
-    Row(modifier = Modifier.border(1.dp, color = Color.LightGray)) {
+    Row(
+        modifier = Modifier.border(1.dp, color = Color.LightGray)
+    ) {
         Column(modifier = Modifier
             .fillMaxHeight()
-            .padding(top = 18.dp, start = 2.dp), verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally) {
+            .padding(top = 18.dp, start = 12.dp), verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
                 painter = painterResource(id = R.drawable.keycap_small),
                 contentDescription = null,
@@ -103,7 +105,7 @@ fun BottomRow(
     likeCount: Int
 ) {
     Row(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().padding(bottom = 14.dp),
         horizontalArrangement = Arrangement.SpaceBetween) {
         BottomRowIconWithOptionalCount(count = commentCount, image = Icons.Outlined.Notifications)
         BottomRowIconWithOptionalCount(count = retweetCount, image = Icons.Outlined.Refresh)

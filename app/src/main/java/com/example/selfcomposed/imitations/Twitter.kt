@@ -7,6 +7,8 @@ import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -40,6 +42,7 @@ fun MainContainer(modifier: Modifier) {
     /*
     Stuff for the lists etc
      */
+    TweetList()
     Box(modifier = modifier) {
 
         var fabState by remember { mutableStateOf(MultiFabState.COLLAPSED) }
@@ -47,12 +50,10 @@ fun MainContainer(modifier: Modifier) {
             OpacityScreen(
                 modifier = Modifier
                     .fillMaxSize()
-                    .alpha(0.9F)
+                    .alpha(0.8F)
                     .background(color = Color.White)
             )
         }
-
-
 
         ActionButton(
             modifier = Modifier.align(Alignment.BottomEnd),
@@ -64,7 +65,11 @@ fun MainContainer(modifier: Modifier) {
 
 @Composable
 fun TweetList() {
-
+    val listOfTweets = getListOfTweets()
+    LazyColumn() {
+        items(listOfTweets) {
+            Tweet(it)
+        }}
 }
 
 @Composable
