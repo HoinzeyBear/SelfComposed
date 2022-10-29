@@ -1,4 +1,4 @@
-package com.example.selfcomposed.imitations
+package com.example.selfcomposed.imitations.twitter
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

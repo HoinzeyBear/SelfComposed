@@ -1,4 +1,4 @@
-package com.example.selfcomposed.imitations
+package com.example.selfcomposed.imitations.twitter
 
 data class TweetState(
     val twitterHandle: String,
