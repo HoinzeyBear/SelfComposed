@@ -6,8 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.selfcomposed.imitations.twitter.Twitter
+import com.example.selfcomposed.imitations.twitter.Tweet
 import com.example.selfcomposed.ui.theme.SelfComposedTheme
+import com.example.selfcomposed.workshop.TextColoring
+import com.example.selfcomposed.workshop.TopBarMenuWithSubMenu
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +22,9 @@ class MainActivity : ComponentActivity() {
 //                    AllAboutState()
 //                    PasswordField()
 //                    KeyboardInputToNextFormField()
-                    Twitter()
+//                    Tweet()
 //                    TopBarMenuWithSubMenu()
-//                      Tweet()
+                    TextColoring()
 //                }
             }
         }
