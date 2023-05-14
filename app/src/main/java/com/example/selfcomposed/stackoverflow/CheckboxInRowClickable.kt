@@ -21,7 +21,32 @@ fun CheckboxInRowWithText() {
                     checkedState = !checkedState
                 },
             verticalAlignment = Alignment.CenterVertically) {
-            Checkbox(checked = checkedState, onCheckedChange = {} )
+            Checkbox(checked = checkedState,
+                onCheckedChange = {} )
+
+            Text(text = "Clicking this Row will toggle checkbox")
+        }
+    }
+}
+
+/*
+https://stackoverflow.com/questions/76226889/android-compose-why-does-checkbox-need-oncheckchanged-when-parent-is-clickable
+ */
+@Composable
+fun CheckboxInRowWithTextAnswer1() {
+    var checkedState by remember { mutableStateOf(false) }
+    Surface {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    checkedState = !checkedState
+                },
+            verticalAlignment = Alignment.CenterVertically) {
+            Checkbox(checked = checkedState,
+                onCheckedChange = {
+                    checkedState = it
+                } )
 
             Text(text = "Clicking this Row will toggle checkbox")
         }
