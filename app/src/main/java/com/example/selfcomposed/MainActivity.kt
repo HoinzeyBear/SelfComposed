@@ -12,6 +12,7 @@ import com.example.selfcomposed.stackoverflow.CheckboxInRowWithTextAnswer1
 import com.example.selfcomposed.ui.theme.SelfComposedTheme
 import com.example.selfcomposed.workshop.TextColoring
 import com.example.selfcomposed.workshop.TopBarMenuWithSubMenu
+import com.example.selfcomposed.workshop.viewpager.ViewPagerDemo
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +28,9 @@ class MainActivity : ComponentActivity() {
 //                    Tweet()
 //                    TopBarMenuWithSubMenu()
 //                    TextColoring()
-                CheckboxInRowWithText()
-                CheckboxInRowWithTextAnswer1()
+//                CheckboxInRowWithText()
+//                CheckboxInRowWithTextAnswer1()
+                ViewPagerDemo()
 //                }
             }
         }
