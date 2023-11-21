@@ -1,4 +1,4 @@
-package com.example.selfcomposed.imitations
+package com.example.selfcomposed.imitations.twitter
 
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
@@ -130,7 +130,6 @@ fun ActionButton(
             )
         }
     }
-
 }
 
 @Composable
@@ -173,19 +172,6 @@ private fun MiniFloatingActionButton(
                 )
             }
         }
-//        IconButton(
-//            modifier = Modifier
-//                .clip(CircleShape)
-//                .background(color = Color.White)
-//                .border(width = 2.dp, color = TwitterBlue),
-//            onClick = { onFabItemClicked(item) }) {
-//
-//            Icon(
-//                modifier = Modifier.size(30.dp),
-//                imageVector =item.image,
-//                contentDescription = null,
-//                tint = TwitterBlue)
-//        }
     }
 }
 
